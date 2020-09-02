@@ -35,7 +35,6 @@ class App extends React.Component {
       <div className="App">
         <h2>React-Hoarder</h2>
         <MyNavbar authed={authed}/>
-        <button className="btn btn-info">I am a button</button>
       </div>
     );
   }
