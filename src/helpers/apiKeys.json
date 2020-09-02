@@ -1,0 +1,11 @@
+{
+"firebaseKeys": {
+  "apiKey": "AIzaSyBEPzEj_LTg1lzxl4hTcoGHO0OPtWWlEzE",
+  "authDomain": "react-hoarder-1d062.firebaseapp.com",
+  "databaseURL": "https://react-hoarder-1d062.firebaseio.com",
+  "projectId": "react-hoarder-1d062",
+  "storageBucket": "react-hoarder-1d062.appspot.com",
+  "messagingSenderId": "772107110904",
+  "appId": "1:772107110904:web:69bfb06a64e5a2155bae0d"
+  }
+}
