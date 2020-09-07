@@ -1,7 +1,16 @@
 import React from 'react';
 import PropTypes from 'prop-types';
+import { NavLink as RRNavLink } from 'react-router-dom';
+import {
+  Collapse,
+  Navbar,
+  NavbarToggler,
+  NavbarBrand,
+  Nav,
+  NavItem,
+  NavLink,
+} from 'reactstrap';
 import firebase from 'firebase/app';
-import Auth from '../Auth/Auth';
 import 'firebase/auth';
 
 class MyNavbar extends React.Component {
@@ -9,25 +18,58 @@ class MyNavbar extends React.Component {
     authed: PropTypes.bool.isRequired,
   }
 
-  logoutClickEvent = (e) => {
+  state = {
+    isOpen: false,
+  }
+
+  logMeOut = (e) => {
     e.preventDefault();
     firebase.auth().signOut();
   }
 
+  toggle = () => {
+    const { isOpen } = this.state;
+    this.setState({ isOpen: !isOpen });
+  }
+
   render() {
-    const { authed } = this.props;
+    const { isOpen } = this.state;
+
+    const buildNavbar = () => {
+      const { authed } = this.props;
+
+      if (authed) {
+        return (
+          <Nav className="ml-auto" navbar>
+            <NavItem>
+              <NavLink tag={RRNavLink} to="/home">Home</NavLink>
+            </NavItem>
+            <NavItem>
+              <NavLink tag={RRNavLink} to="/stuff">My Stuff</NavLink>
+            </NavItem>
+            <NavItem>
+              <NavLink tag={RRNavLink} to="/new">New Item</NavLink>
+            </NavItem>
+            <NavItem>
+              <NavLink onClick={this.logMeOut}>Log Me Out</NavLink>
+          </NavItem>
+        </Nav>
+        );
+      }
+
+      return <Nav className="ml-auto" navbar></Nav>;
+    };
 
     return (
-      <nav className="navbar navbar-light bg-light">
-        <span className="navbar-brand mb-0 h1">Navbar</span>
-        {
-          authed ? (
-            <button className="btn btn-primary" onClick={this.logoutClickEvent}>Log out</button>
-          ) : (
-           <Auth />
-          )
-        }
-      </nav>
+      <div>
+        <Navbar color="light" light expand="md">
+          <NavbarBrand href="/">Hoarder</NavbarBrand>
+          <NavbarToggler onClick={this.toggle} />
+          <Collapse isOpen={isOpen} navbar>
+            {buildNavbar()}
+          </Collapse>
+        </Navbar>
+      </div>
     );
   }
 }

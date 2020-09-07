@@ -60,14 +60,14 @@ class App extends React.Component {
       <div className="App">
         <BrowserRouter>
           <React.Fragment>
-            <MyNavbar />
+            <MyNavbar authed={authed}/>
             <div className="container">
               <Switch>
                 <PrivateRoute path="/home" component={Home} authed={authed} />
                 <PrivateRoute path="/new" component={NewStuff} authed={authed} />
                 <PrivateRoute path="/stuff" component={MyStuff} authed={authed} />
                 <PrivateRoute path="/edit/:stuffId" component={EditStuff} authed={authed} />
-                <PrivateRoute path="/stuff/:stuffId" component={SingleStuff} authed={authed} />
+                <PrivateRoute path="/single/:stuffId" component={SingleStuff} authed={authed} />
                 <PublicRoute path="/auth" component={Auth} authed={authed} />
                 <Redirect from="*" to="/home" />
               </Switch>
