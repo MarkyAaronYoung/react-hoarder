@@ -5,14 +5,14 @@ import 'firebase/auth';
 class Auth extends React.Component {
   loginClickEvent = (e) => {
     e.preventDefault();
-    const googleProvider = new firebase.auth.GoogleAuthProvider();
-    firebase.auth().signInWithPopup(googleProvider);
+    const provider = new firebase.auth.GoogleAuthProvider();
+    firebase.auth().signInWithPopup(provider);
   }
 
   render() {
     return (
       <div className="Auth">
-        <button className="btn btn-danger" onClick={this.loginClickEvent}>Google Login</button>
+        <button className="btn btn-light" onClick={this.loginClickEvent}>Google Login</button>
       </div>
     );
   }
